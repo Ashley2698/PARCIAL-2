@@ -1,0 +1,70 @@
+@startuml
+skinparam classBackgroundColor #F3F3F3
+skinparam classBorderColor #2E8B57
+skinparam classFontSize 12
+
+class Dashboard {
+  +gestionarUsuarios(): void
+  +visualizarPacientes(): void
+  +gestionarExpedientes(): void
+  +administrarTerapias(): void
+  +gestionarCitas(): void
+}
+
+class Usuarios {
+  +nombres: String
+  +direccion: String
+  +email: String
+  +rol: String
+  +registrar(): void
+  +iniciarSesion(): void
+  +actualizarPerfil(): void
+  +cambiarContraseña(): void
+}
+
+class Paciente {
+  +nombres: String
+  +direccion: String
+  +email: String
+  +registrar(): void
+  +actualizar(): void
+  +eliminar(): void
+}
+
+class Expediente {
+  +fecha: Date
+  +descripcion: String
+  +idEmpleado: String
+  +idPaciente: String
+  +fechaCita: Date
+  +registrar(): void
+  +actualizar(): void
+}
+
+class Terapia {
+  +fecha: Date
+  +descripcion: String
+  +idEmpleado: String
+  +idPaciente: String
+  +fechaCita: Date
+  +registrar(): void
+  +actualizar(): void
+}
+
+class Cita {
+  +idPaciente: String
+  +fecha: Date
+  +descripcion: String
+  +idEmpleado: String
+  +generarCita(): void
+  +editarCita(): void
+  +eliminarCita(): void
+}
+
+Dashboard -- Usuarios : "Gestión"
+Dashboard -- Paciente : "Visualización"
+Dashboard -- Expediente : "Administración"
+Dashboard -- Terapia : "Registro"
+Dashboard -- Cita : "Programación"
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+skinparam classBackgroundColor #F3F3F3
+skinparam classBorderColor #2E8B57
+skinparam classFontSize 12
+
+class Usuario {
+  +nombre: String
+  +contraseña: String
+  +rol: String
+  +iniciarSesion(): void
+  +cerrarSesion(): void
+}
+
+class Paciente {
+  +nombre: String
+  +historialTerapias: List<Terapia>
+  +agendarCita(): void
+}
+
+class Terapia {
+  +fecha: Date
+  +tipo: String
+  +duración: int
+  +registrarTerapia(): void
+}
+
+class Cita {
+  +fecha: Date
+  +estado: String
+  +confirmarCita(): void
+}
+
+Usuario -- Paciente : "Gestiona perfil"
+Paciente -- Terapia : "Recibe varias"
+Paciente -- Cita : "Agenda con"
+
+@enduml

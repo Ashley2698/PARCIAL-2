@@ -1,0 +1,58 @@
+@startuml
+skinparam classBackgroundColor #F3F3F3
+skinparam classBorderColor #2E8B57
+skinparam classFontSize 12
+
+class Terapeuta {
+  +nombre: String
+  +especialidad: String
+  +registrarTerapia(): void
+}
+
+class RegistroTerapia {
+  +id: String
+  +fecha: Date
+  +tipo: String
+  +guardarTerapia(): void
+}
+
+class Paciente {
+  +nombre: String
+  +edad: int
+  +historialTerapias: List<RegistroTerapia>
+}
+
+class ExpedientePaciente {
+  +id: String
+  +documentos: List<String>
+  +actualizarExpediente(): void
+}
+
+class ProgramacionCitas {
+  +fecha: Date
+  +hora: Time
+  +estado: String
+  +confirmarCita(): void
+}
+
+Terapeuta -- RegistroTerapia : "Registra"
+Paciente -- RegistroTerapia : "Recibe"
+Paciente -- ExpedientePaciente : "Tiene"
+Paciente -- ProgramacionCitas : "Agenda"
+
+@startuml
+actor Terapeuta
+actor Secretaria
+participant "Sistema" as S
+participant "Expediente del Paciente" as EP
+participant "Programación de Citas" as PC
+
+Terapeuta -> S: Buscar paciente por código interno
+S -> EP: Verificar última cita
+EP --> S: Devuelve información de última cita
+Terapeuta -> EP: Registrar resultado de la terapia
+Terapeuta -> PC: Programar próxima cita
+Secretaria -> PC: Confirmar cita del paciente
+PC --> Secretaria: Cita confirmada
+
+@enduml

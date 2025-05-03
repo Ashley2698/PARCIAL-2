@@ -1,0 +1,16 @@
+@startuml
+start
+:Iniciar actualización del expediente;
+:Verificar paciente por código interno;
+:Validar coincidencia de fecha de cita con terapia realizada;
+
+if (¿Las fechas coinciden?) then (Sí)
+  :Actualizar expediente;
+  :Procesar nueva cita;
+  :Notificar al paciente vía correo;
+else (No)
+  :Informar al paciente sobre la reprogramación (por falta de espacio);
+endif
+
+stop
+@enduml
